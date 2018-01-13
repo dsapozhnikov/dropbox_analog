@@ -17,12 +17,16 @@ import java.util.stream.Collectors;
 public class FileUploadController {
     private  final StorageService storageService;
 
-@Autowired
+@Autowired  // используется для автоматического внедрения зависимости, Spring  находит экземпляр нужного бина и подставляет
+//в свойство отмеченное аннотацией
+
     public FileUploadController (StorageService storageService) {
         this.storageService = storageService;
 
     }
-    @GetMapping
+    @GetMapping // позволяет м связать HTTP запросы с определенными методами контроллера, в данном случае
+    // метод связан с GET @GetMapping-
+
     public String listUploadedFiles(Model model) throws IOException {
 
         model.addAttribute("files", storageService.loadAll().map(
@@ -34,7 +38,8 @@ public class FileUploadController {
     }
 
     @GetMapping("/files/{filename:.+}")
-    @ResponseBody
+    @ResponseBody // сериализует объект into JSON  и передает назад в HttpResponse object
+
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
         Resource file = storageService.loadAsResource(filename);
