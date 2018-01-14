@@ -1,11 +1,13 @@
+package app;
+
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Path;
 
 import java.util.stream.Stream;
-
-public interface StorageService {
+//  создаем интерфейс сторедж, для того чтобы контроллер мог общаться с файловой системой
+public interface Storage {
     void init();
     void store(MultipartFile file);
     Stream<Path> loadAll();

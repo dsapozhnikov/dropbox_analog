@@ -1,4 +1,4 @@
-package storage;
+package app;
 
 
 public class StorageFileNotFoundException extends StorageException {
